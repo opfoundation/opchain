@@ -1,0 +1,16 @@
+version: "3"
+services:
+  bitcoind:
+    image: ruimarinho/bitcoin-core:latest
+    platform: linux/arm64
+    entrypoint: ["bitcoind", "-datadir=/data/"]
+    healthcheck:
+      test: ["CMD", "bitcoin-cli", "-datadir=/data/", "getblockchaininfo"]
+    ports:
+      - "8332:8332"
+    volumes:
+      - ./data:/bitcoin/.bitcoin
+    environment:
+      - BITCOIN_NETWORK=regtest
+      - BITCOIN_RPCUSER=rpcuser
+      - BITCOIN_RPCPASSWORD=rpcpassword
