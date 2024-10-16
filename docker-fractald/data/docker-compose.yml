@@ -1,0 +1,10 @@
+version: '3'
+services:
+  fractald:
+    build: .
+    volumes:
+      - ./data:/app/fractald-0.2.1-x86_64-linux-gnu/data
+    ports:
+      - "8332:8332"  # Default Bitcoin RPC port
+      - "8333:8333"  # Default Bitcoin P2P port
+    restart: unless-stopped
